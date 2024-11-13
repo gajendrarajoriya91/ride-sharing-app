@@ -10,7 +10,12 @@ services:
       - .:/app
       - /app/node_modules
     environment:
-      NODE_ENV: development
+      NODE_ENV: production          
+      PORT: 10000                  
+      MONGO_URI: ${MONGO_URI}       
+      REDIS_URI: ${REDIS_URI}       
+      JWT_SECRET: ${JWT_SECRET}    
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
     depends_on:
       - redis
 
