@@ -1,23 +1,35 @@
 
+
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      NODE_ENV: production          
-      PORT: 10000                  
-      MONGO_URI: ${MONGO_URI}       
-      REDIS_URI: ${REDIS_URI}       
-      JWT_SECRET: ${JWT_SECRET}    
-      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      NODE_ENV: ${NODE_ENV}          
+      PORT: ${PORT:-10000}            
+      MONGO_URI: ${MONGO_URI}         
+      REDIS_URI: ${REDIS_URI}        
+      JWT_SECRET: ${JWT_SECRET}       
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN} 
     depends_on:
-      - redis
-      ports:
-      - "10000:10000"
+      - redis                      
+    ports:
+      - "10000:10000"                
+    volumes:
+      - .:/app                       
+      - /app/node_modules             
+    networks:
+      - app_network                   
 
   redis:
-    image: redis:7
-    container_name: redis-server
+    image: redis:7                   
+    container_name: redis-server     
     ports:
-      - "6379:6379"
+      - "6379:6379"                  
+    networks:
+      - app_network                   
+
+networks:
+  app_network:
+    driver: bridge  
