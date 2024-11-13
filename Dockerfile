@@ -14,4 +14,5 @@ COPY . .
 EXPOSE 3000
 
 
-CMD ["npm", "run", "build:start"]
+CMD ["sh", "-c", "npm run build; npm run start"]
+
