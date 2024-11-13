@@ -1,0 +1,45 @@
+# Node.js modules
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+
+# Environment and secrets
+# .env
+.env.local
+.env.test
+.env.production
+.DS_Store
+
+# OS or IDE-specific files
+*.swp
+*.swo
+*.bak
+Thumbs.db
+.DS_Store
+*.tmp
+.idea/
+.vscode/
+*.iml
+
+# Test-related files
+coverage
+*.test.js
+*.spec.js
+jest.config.js
+
+# Build artifacts
+dist/
+build/
+*.cache
+.cache-loader
+
+# Docker and Git
+Dockerfile
+docker-compose.override.yml
+.git
+.gitignore
