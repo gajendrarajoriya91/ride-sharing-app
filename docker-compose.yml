@@ -1,10 +1,18 @@
 
 
 services:
+  redis:
+    image: redis:7                   
+    container_name: redis-server     
+    ports:
+      - "6379:6379"                   
+    networks:
+      - app_network                   
+
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile          
     environment:
       NODE_ENV: ${NODE_ENV}          
       PORT: ${PORT:-10000}            
@@ -13,20 +21,12 @@ services:
       JWT_SECRET: ${JWT_SECRET}       
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN} 
     depends_on:
-      - redis                      
+      - redis                       
     ports:
       - "10000:10000"                
     volumes:
-      - .:/app                       
-      - /app/node_modules             
-    networks:
-      - app_network                   
-
-  redis:
-    image: redis:7                   
-    container_name: redis-server     
-    ports:
-      - "6379:6379"                  
+      - .:/app                        
+      - /app/node_modules              
     networks:
       - app_network                   
 
