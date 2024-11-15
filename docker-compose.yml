@@ -17,7 +17,7 @@ services:
       NODE_ENV: ${NODE_ENV}
       PORT: ${PORT:-10000}
       MONGO_URI: ${MONGO_URI}
-      REDIS_URI: redis://redis-server:6379  # Using the container name
+      REDIS_URI: ${REDIS_URI}  # Using the container name
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
     depends_on:
