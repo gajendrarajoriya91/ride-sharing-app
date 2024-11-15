@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import createApolloServer from './graphql';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import { authMiddleware } from './middlewares/auth.middleware';
 import errorMiddleware from './middlewares/error.middleware';
@@ -12,6 +13,7 @@ const createApp = async (io: SocketIOServer): Promise<Application> => {
     );
   }
   const app: Application = express();
+  app.use(cors());
   app.use(bodyParser.json());
   app.use(authMiddleware);
   app.use(errorMiddleware);
